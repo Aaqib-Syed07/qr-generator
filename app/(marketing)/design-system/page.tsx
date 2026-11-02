@@ -2,6 +2,7 @@
   Phase 0 only: the design system reference page, reachable at /design-system.
   The real home screen with generator is app/(marketing)/page.tsx.
 */
+import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { DownloadBar } from "@/components/layout/download-bar";
 import { AdSlot } from "@/components/layout/ad-slot";
@@ -365,9 +366,13 @@ export default function DesignSystemReferencePage() {
           />
           <div className="space-y-4">
             <AccordionItem question="Do QR codes expire?">
-              Static codes never expire. Dynamic codes keep redirecting for at
-              least 90 days after a plan lapses, then show a page that still
-              shows the destination.
+              Static codes never expire and cost nothing. Dynamic codes keep
+              redirecting for at least 90 days after a plan lapses, then show
+              a page that still shows the destination. Read the{" "}
+              <Link href="/learn/qr-expiry" className="font-medium text-primary underline">
+                lapse policy
+              </Link>
+              .
             </AccordionItem>
             <AccordionItem question="Is there a watermark?">
               No.

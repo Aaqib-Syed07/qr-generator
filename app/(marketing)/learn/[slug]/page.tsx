@@ -59,7 +59,11 @@ export default async function LearnArticlePage({
               <strong>Short answer.</strong> Static codes never expire and cost
               nothing. Dynamic codes stay live for at least 90 days after a
               plan ends, then still show the destination. Details follow, with
-              a last checked date before publishing.
+              a last checked date before publishing. See the{" "}
+              <Link href="/learn/qr-expiry" className="font-medium text-primary underline">
+                lapse policy
+              </Link>
+              .
             </p>
           </section>
 
