@@ -1,4 +1,5 @@
 import { ThemeToggle } from "@/components/theme-toggle";
+import { DownloadBar } from "@/components/layout/download-bar";
 import { Badge } from "@/components/ui/badge";
 import { AccordionItem } from "@/components/ui/accordion";
 import { Button, IconButton } from "@/components/ui/button";
@@ -398,6 +399,22 @@ export default function DesignSystemReferencePage() {
           <div className="rounded-full border border-border bg-surface-raised px-6 py-2 text-small">
             rounded-full, badges and toggles
           </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="download-bar" className="mb-12">
+        <h2 id="download-bar" className="text-h2 font-semibold">
+          Sticky mobile download bar
+        </h2>
+        <p className="mt-2 text-body text-text-muted">
+          Sticky at the bottom under 1024px, inline above 1024px. In real pages
+          it sits below the preview tile and the generator controls.
+        </p>
+        <div className="mt-4 overflow-hidden rounded-xl border border-border">
+          <div className="bg-surface p-8 text-center text-small text-text-muted">
+            Generator controls go here
+          </div>
+          <DownloadBar />
         </div>
       </section>
 
