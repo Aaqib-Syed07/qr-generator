@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Signet
 
-## Getting Started
+The honest QR code generator. Free static QR codes with no signup and no
+watermark, supported by one short ad per download. Dynamic codes that never
+become a dead end.
 
-First, run the development server:
+Owner: Aaqib. India first, then global.
 
-```bash
+This repository is early work in progress. It ships the Phase 0 user
+interface with mock data only. No QR encoding, no accounts and no payments
+exist yet.
+
+## Status
+
+Current phase: Phase 0 (UI), in progress. The phase plan lives in
+`docs/PRD.md`. Tasks done so far:
+
+- P0-1 repo audit
+- P0-2 design tokens, light and dark themes
+- P0-3 core components (buttons, inputs, toggle, slider, color picker,
+  dropzone, tabs, accordion, tooltip, badge, toast, skeleton, card)
+- P0-4 header, footer, sticky mobile download bar
+- P0-5 static screens (home with generator mock, 13 tool pages, pricing,
+  login, signup, learn article template, dashboard list and detail,
+  branded fallback page, 404 and error pages, download ad modal with all
+  six states)
+- P0-6 microcopy pass
+- P0-7 accessibility baseline pending a Lighthouse run
+
+The Phase 0 design review artifact lives at `/design-system`.
+
+## Tech stack
+
+- Next.js 16 (App Router), React 19, TypeScript strict
+- Tailwind CSS 4 with design tokens, light and dark themes
+- ESLint (flat config)
+- Planned: Supabase (publishable and secret API keys), Upstash Redis or
+  Vercel KV for the redirect cache, Razorpay, Sentry, Microsoft Clarity
+
+## Getting started
+
+```
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Other commands:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm run build    production build (Turbopack)
+npm run lint     ESLint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Node 20.9 or newer is required. An `.env.example` file lists every planned
+environment variable with empty values. Copy it to `.env.local` and fill in
+only what a phase needs. Nothing is required for Phase 0.
 
-## Learn More
+## Routes in this phase
 
-To learn more about Next.js, take a look at the following resources:
+- `/` home with the generator mock
+- `/tools/[type]` one page per QR type (13 types)
+- `/pricing` plan cards and lapse policy
+- `/login`, `/signup` mock forms
+- `/learn` article index and `/learn/[slug]` article template
+- `/dashboard` code list and `/dashboard/[id]` detail with mock analytics
+- `/r/[code]` branded fallback page preview
+- `/design-system` token and component reference
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Docs
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `docs/PRD.md`, what is built and in which order, with the phase gates
+- `docs/ARCHITECTURE.md`, system structure, data flow, redirect rules
+- `docs/DESIGN_SYSTEM.md`, tokens, components, accessibility rules
+- `AGENTS.md`, working rules for coding agents
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT. See `LICENSE`.
