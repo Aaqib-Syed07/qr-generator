@@ -1,46 +1,41 @@
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Badge } from "@/components/ui/badge";
+import { AccordionItem } from "@/components/ui/accordion";
+import { Button, IconButton } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { ColorInput } from "@/components/ui/color-input";
+import { FileDropzone } from "@/components/ui/file-dropzone";
+import { Input, NumberInput, Textarea } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Skeleton, Loading } from "@/components/ui/skeleton";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import { Tabs } from "@/components/ui/tabs";
+import { ToastDemo } from "@/components/ui/toast";
+import { Tooltip } from "@/components/ui/tooltip";
 
 /*
-  P0-2 working surface: shows every design token next to its use so both
-  themes can be checked in one place. The real home screen with the
-  generator arrives in P0-5 on top of these tokens.
+  Phase 0 reference page: every design token and core component next to its
+  use so both themes and all states can be checked in one place.
+  Screens for real pages (home with generator, pricing, dashboard) come in
+  P0-5 and compose these components.
   The name "Signet" is a working placeholder until the owner confirms it.
 */
 
 const colorTokens = [
   { name: "--background", className: "bg-background", use: "Page" },
   { name: "--surface", className: "bg-surface", use: "Cards, panels" },
-  {
-    name: "--surface-raised",
-    className: "bg-surface-raised",
-    use: "Modals, popovers",
-  },
+  { name: "--surface-raised", className: "bg-surface-raised", use: "Modals, popovers" },
   { name: "--text", className: "bg-text", use: "Body and headings" },
-  {
-    name: "--text-muted",
-    className: "bg-text-muted",
-    use: "Secondary text",
-  },
+  { name: "--text-muted", className: "bg-text-muted", use: "Secondary text" },
   { name: "--border", className: "bg-border", use: "Dividers, inputs" },
   { name: "--primary", className: "bg-primary", use: "Buttons, links" },
-  {
-    name: "--primary-hover",
-    className: "bg-primary-hover",
-    use: "Hover and pressed",
-  },
-  {
-    name: "--primary-text",
-    className: "bg-primary-text",
-    use: "Text on primary",
-  },
+  { name: "--primary-hover", className: "bg-primary-hover", use: "Hover and pressed" },
+  { name: "--primary-text", className: "bg-primary-text", use: "Text on primary" },
   { name: "--success", className: "bg-success", use: "Success states" },
   { name: "--warning", className: "bg-warning", use: "Scan warnings" },
   { name: "--error", className: "bg-error", use: "Errors" },
-  {
-    name: "--ad-surface",
-    className: "bg-ad-surface",
-    use: "Ad slot background",
-  },
+  { name: "--ad-surface", className: "bg-ad-surface", use: "Ad slot background" },
   { name: "--ad-border", className: "bg-ad-border", use: "Ad slot border" },
 ];
 
@@ -55,18 +50,18 @@ const spacingSteps = [
   { token: "96px (p-24)", className: "p-24" },
 ];
 
-export default function DesignTokensPage() {
+export default function DesignSystemReferencePage() {
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-8 md:px-6 md:py-12">
-      <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
+      <div className="mb-12 flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-caption font-medium uppercase tracking-wider">
             Phase 0, working name
           </p>
-          <h1 className="text-h1 font-bold">Signet design tokens</h1>
+          <h1 className="text-h1 font-bold">Signet design system</h1>
           <p className="mt-2 max-w-xl text-body text-text-muted">
-            Every color, type size and spacing step in this theme in one view.
-            Use the theme control to check both themes.
+            Every color, type size, spacing step and component in this theme in
+            one view. Use the theme control to check both themes.
           </p>
         </div>
         <ThemeToggle />
@@ -90,7 +85,7 @@ export default function DesignTokensPage() {
                 aria-hidden="true"
               />
               <span>
-                <code className="text-small font-mono">{token.name}</code>
+                <code className="font-mono text-small">{token.name}</code>
                 <span className="block text-small text-text-muted">
                   {token.use}
                 </span>
@@ -145,17 +140,261 @@ export default function DesignTokensPage() {
         </p>
       </section>
 
+      <section aria-labelledby="buttons" className="mb-12">
+        <h2 id="buttons" className="text-h2 font-semibold">
+          Buttons
+        </h2>
+        <Card className="mt-4 space-y-6">
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-small text-text-muted">Primary:</span>
+            <Button variant="primary">Download</Button>
+            <Button variant="primary" loading>
+              Download
+            </Button>
+            <Button variant="primary" disabled>
+              Download
+            </Button>
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-small text-text-muted">Secondary:</span>
+            <Button variant="secondary">Upgrade</Button>
+            <Button variant="secondary" loading>
+              Upgrade
+            </Button>
+            <Button variant="secondary" disabled>
+              Upgrade
+            </Button>
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-small text-text-muted">Ghost:</span>
+            <Button variant="ghost">Learn more</Button>
+            <Button variant="ghost" disabled>
+              Learn more
+            </Button>
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-small text-text-muted">Destructive:</span>
+            <Button variant="destructive">Delete code</Button>
+            <Button variant="destructive" disabled>
+              Delete code
+            </Button>
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-small text-text-muted">Sizes:</span>
+            <Button size="sm">Small</Button>
+            <Button size="md">Medium</Button>
+            <Button size="lg">Large</Button>
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-small text-text-muted">Icon only:</span>
+            <IconButton
+              label="Edit destination"
+              icon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 20h9" />
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                </svg>
+              }
+            />
+          </div>
+        </Card>
+      </section>
+
+      <section aria-labelledby="inputs" className="mb-12">
+        <h2 id="inputs" className="text-h2 font-semibold">
+          Inputs
+        </h2>
+        <div className="mt-4 space-y-6 rounded-xl border border-border bg-surface p-6">
+          <Input
+            id="demo-url"
+            label="Destination URL"
+            placeholder="https://example.com/menu"
+            helper="The link this QR code opens."
+          />
+          <Input
+            id="demo-url-error"
+            label="Destination URL with an error"
+            defaultValue="example"
+            helper="Start with https://."
+            error='This is not a complete URL. Add https:// at the start, like https://example.com.'
+          />
+          <Input id="demo-disabled" label="Disabled input" disabled placeholder="Not editable" />
+          <NumberInput
+            id="demo-size"
+            label="Print size in mm"
+            defaultValue={40}
+            helper="Width of the printed QR code."
+            min={20}
+            max={4000}
+          />
+          <Textarea
+            id="demo-text"
+            label="Text payload"
+            helper="Plain text stays private. Nothing is stored."
+          />
+          <Select
+            id="demo-select"
+            label="Error correction"
+            helper={"M by default. Q and H survive more damage but are denser."}
+            options={[
+              { value: "L", label: "L, smallest" },
+              { value: "M", label: "M, default" },
+              { value: "Q", label: "Q, with a logo" },
+              { value: "H", label: "H, heavy damage" },
+            ]}
+            defaultValue="M"
+          />
+          <Select
+            id="demo-select-error"
+            label="Select with an error"
+            placeholder="Pick a format"
+            options={[{ value: "png", label: "PNG" }]}
+            error="Pick a format before downloading. PNG is the most common choice."
+          />
+        </div>
+      </section>
+
+      <section aria-labelledby="controls" className="mb-12">
+        <h2 id="controls" className="text-h2 font-semibold">
+          Toggle, slider, color picker, dropzone
+        </h2>
+        <div className="mt-4 space-y-6 rounded-xl border border-border bg-surface p-6">
+          <Switch
+            id="demo-switch"
+            label="Add a quiet zone"
+            helper="A quiet margin helps scanners find the code."
+          />
+          <Slider
+            id="demo-slider"
+            label="Logo size, percent of the code"
+            defaultValue={20}
+            min={0}
+            max={30}
+            helper="Keep it at 20 percent or less."
+          />
+          <ColorInput
+            id="demo-color"
+            label="Foreground color"
+            defaultValue="#0f172a"
+          />
+          <FileDropzone
+            id="demo-dropzone"
+            label="Logo upload"
+            accept="image/png,image/svg+xml"
+          />
+        </div>
+      </section>
+
+      <section aria-labelledby="tabs-accordion" className="mb-12">
+        <h2 id="tabs-accordion" className="text-h2 font-semibold">
+          Tabs and accordion
+        </h2>
+        <div className="mt-4 space-y-6 rounded-xl border border-border bg-surface p-6">
+          <Tabs
+            label="Generator control groups"
+            items={[
+              {
+                id: "content",
+                label: "Content",
+                content: (
+                  <p className="text-body text-text-muted">
+                    Form fields for the 13 QR types arrive in Phase 1.
+                  </p>
+                ),
+              },
+              {
+                id: "design",
+                label: "Design",
+                content: (
+                  <p className="text-body text-text-muted">
+                    Colors, dot styles, eye shapes, logo and frames.
+                  </p>
+                ),
+              },
+              {
+                id: "export",
+                label: "Export",
+                content: (
+                  <p className="text-body text-text-muted">
+                    PNG up to 4000 px, SVG and PDF.
+                  </p>
+                ),
+              },
+            ]}
+          />
+          <div className="space-y-4">
+            <AccordionItem question="Do QR codes expire?">
+              Static codes never expire. Dynamic codes keep redirecting for at
+              least 90 days after a plan lapses, then show a page that still
+              shows the destination.
+            </AccordionItem>
+            <AccordionItem question="Is there a watermark?">
+              No.
+            </AccordionItem>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="feedback" className="mb-12">
+        <h2 id="feedback" className="text-h2 font-semibold">
+          Tooltip, badge, toast, skeleton
+        </h2>
+        <div className="mt-4 space-y-6 rounded-xl border border-border bg-surface p-6">
+          <p className="flex flex-wrap items-center gap-4">
+            <span className="text-body text-text">Hover or focus this link:</span>
+            <Tooltip id="demo-tooltip" tooltip="Codes stay live for 90 days after a lapse.">
+              <button
+                type="button"
+                aria-describedby="demo-tooltip"
+                className="min-h-11 cursor-pointer font-medium text-primary underline"
+              >
+                Lapse policy
+              </button>
+            </Tooltip>
+          </p>
+          <p className="flex flex-wrap items-center gap-4">
+            <span className="text-small text-text-muted">Badges:</span>
+            <Badge tone="neutral">Draft</Badge>
+            <Badge tone="success">Live</Badge>
+            <Badge tone="warning">Low contrast</Badge>
+            <Badge tone="error">Scans failed</Badge>
+          </p>
+          <div>
+            <p className="mb-4 text-small text-text-muted">Toast:</p>
+            <ToastDemo />
+          </div>
+          <div>
+            <p className="mb-4 text-small text-text-muted">Skeleton and loading:</p>
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-3/4" />
+              <Skeleton className="h-4 w-1/2" />
+              <Loading text="Checking scan readiness" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section aria-labelledby="radius-shadows" className="mb-12">
         <h2 id="radius-shadows" className="text-h2 font-semibold">
-          Radius and shadows
+          Cards, radius and shadows
         </h2>
         <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3">
-          <div className="rounded-lg border border-border bg-surface-raised p-6 text-small">
-            rounded-lg, 8px, inputs and buttons
-          </div>
-          <div className="rounded-xl border border-border bg-surface-raised p-6 text-small shadow-sm">
-            rounded-xl, 12px, cards and modals
-          </div>
+          <Card>
+            <p className="text-small">Default card, 12px radius</p>
+          </Card>
+          <Card hoverable>
+            <p className="text-small">Hoverable card, add shadow-sm on hover</p>
+          </Card>
           <div className="rounded-full border border-border bg-surface-raised px-6 py-2 text-small">
             rounded-full, badges and toggles
           </div>
@@ -181,18 +420,6 @@ export default function DesignTokensPage() {
             Reserved ad space, 280px, never styled like content
           </div>
         </aside>
-      </section>
-
-      <section aria-labelledby="motion" className="mb-12">
-        <h2 id="motion" className="text-h2 font-semibold">
-          Motion
-        </h2>
-        <div className="mt-4 rounded-xl border border-border bg-surface p-6">
-          <p className="text-body">
-            Hover this card: 150 ms color shift, removed under
-            prefers-reduced-motion.
-          </p>
-        </div>
       </section>
 
       <footer className="border-t border-border pt-6 text-small text-text-muted">
