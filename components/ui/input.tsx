@@ -17,7 +17,7 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
   error?: ReactNode;
 };
 
-export function Input({ id, label, helper, error, ...props }: InputProps) {
+export function Input({ id, label, helper, error, className, ...props }: InputProps) {
   return (
     <Field id={id} label={label} helper={helper} error={error}>
       <input
@@ -26,7 +26,7 @@ export function Input({ id, label, helper, error, ...props }: InputProps) {
         type={props.type ?? "text"}
         aria-invalid={Boolean(error) || undefined}
         aria-describedby={fieldDescribedBy(id, helper, error)}
-        className={controlClasses + (error ? " border-error" : " border-border")}
+        className={controlClasses + (error ? " border-error" : " border-border") + (className ? " " + className : "")}
       />
     </Field>
   );
@@ -51,6 +51,7 @@ export function Textarea({
   helper,
   error,
   rows = 4,
+  className,
   ...props
 }: TextareaProps) {
   return (
@@ -62,7 +63,7 @@ export function Textarea({
         aria-invalid={Boolean(error) || undefined}
         aria-describedby={fieldDescribedBy(id, helper, error)}
         className={
-          controlClasses + " min-h-24" + (error ? " border-error" : " border-border")
+          controlClasses + " min-h-24" + (error ? " border-error" : " border-border") + (className ? " " + className : "")
         }
       />
     </Field>
