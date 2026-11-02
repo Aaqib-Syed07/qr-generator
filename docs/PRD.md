@@ -130,7 +130,7 @@ Gate: owner confirms brand name and that the Vercel project is linked to the rep
 - [x] P0-3 Core components
 - [x] P0-4 Layout: header, footer, sticky mobile download bar
 - [x] P0-5 Static screens: home with generator, type page template, design studio, scan readiness panel, download ad modal (all states), ad slot placeholders, pricing, login and signup, dashboard (list, detail, analytics), fallback page, learn article template, 404 and error pages
-- [ ] P0-6 Microcopy for empty states, errors, ad modal, lapse promise, pricing
+- [x] P0-6 Microcopy for empty states, errors, ad modal, lapse promise, pricing
 - [ ] P0-7 Accessibility baseline
 Not in this phase: any QR logic, auth, database, real ads, analytics scripts.
 Acceptance: all screens fine at 360, 768 and 1280 px. Lighthouse accessibility 95 or higher on home and pricing. Both themes pass contrast. No hardcoded colors outside tokens.
@@ -252,7 +252,11 @@ Done: commit `phase-5-monetization-complete`.
 (none yet)
 
 ## Blockers and Questions for the Owner
-1. Border contrast: the `--border` and `--ad-border` values in `DESIGN_SYSTEM.md` fail the rule stated in the same doc (UI borders 3:1). Measured: light `#CBD5E1` on white 1.48:1, dark `#334155` on `#0B1220` 1.81:1, light ad-border 2.34:1, dark ad-border 2.36:1. Replacement candidates that pass: light border `#64748B` (4.76:1), dark border `#64748B` (3.93:1), dark ad-border `#64748B` (3.75:1), light ad-border `#64748B` (4.46:1 on `#F1F5F9`). Approve before P0-3 components start using borders.
+1. Border contrast: the `--border` and `--ad-border` values in `DESIGN_SYSTEM.md` fail the rule stated in the same doc (UI borders 3:1). Measured: light `#CBD5E1` on white 1.48:1, dark `#334155` on `#0B1220` 1.81:1, light ad-border 2.34:1, dark ad-border 2.36:1. Replacement candidates that pass: light border `#64748B` (4.76:1), dark border `#64748B` (3.93:1), dark ad-border `#64748B` (3.75:1), light ad-border `#64748B` (4.46:1 on `#F1F5F9`). Approve before P0-3 components start using borders. P0-3 used the token names as written, so approving now is a one line change per token.
 2. `package.json` has no `typecheck` and `test` scripts. May "typecheck": "tsc --noEmit" be added now? "test" is needed in Phase 1 (P1-8) and its runner will be chosen then.
 3. Phase 0 gate item: Vercel project is not linked to the repo yet.
 4. Brand name not confirmed. UI uses "Signet" as a marked working placeholder.
+5. P0-7: contrast was verified by measurement (see FAQ 1) and keyboard and ARIA patterns are wired into every component, but the Lighthouse accessibility score of 95 or higher on home and pricing needs a real Lighthouse run, which this environment cannot do. Run it against a preview deployment or `npm run dev` and report the numbers before P0-7 is ticked.
+
+## Suggestions (the agent writes here, the owner decides)
+1. The Phase 0 verification page lives at `/design-system` (tokens, all component states, all ad modal states in one view). It ships only as a build artifact of this phase; delete it before launch or keep it as a styleguide, your call.
