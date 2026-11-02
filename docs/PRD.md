@@ -128,7 +128,7 @@ Gate: owner confirms brand name and that the Vercel project is linked to the rep
 - [x] P0-1 Repo audit (list what exists, no changes)
 - [x] P0-2 Tokens and light and dark themes from `DESIGN_SYSTEM.md`
 - [x] P0-3 Core components
-- [ ] P0-4 Layout: header, footer, sticky mobile download bar
+- [x] P0-4 Layout: header, footer, sticky mobile download bar
 - [ ] P0-5 Static screens: home with generator, type page template, design studio, scan readiness panel, download ad modal (all states), ad slot placeholders, pricing, login and signup, dashboard (list, detail, analytics), fallback page, learn article template, 404 and error pages
 - [ ] P0-6 Microcopy for empty states, errors, ad modal, lapse promise, pricing
 - [ ] P0-7 Accessibility baseline
