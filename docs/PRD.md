@@ -125,8 +125,8 @@ Current phase: **Phase 0** (edit this line to move on)
 ### Phase 0: UI
 Goal: a clear, fast, trustworthy interface and design system BEFORE any logic. Mock data only.
 Gate: owner confirms brand name and that the Vercel project is linked to the repo.
-- [ ] P0-1 Repo audit (list what exists, no changes)
-- [ ] P0-2 Tokens and light and dark themes from `DESIGN_SYSTEM.md`
+- [x] P0-1 Repo audit (list what exists, no changes)
+- [x] P0-2 Tokens and light and dark themes from `DESIGN_SYSTEM.md`
 - [ ] P0-3 Core components
 - [ ] P0-4 Layout: header, footer, sticky mobile download bar
 - [ ] P0-5 Static screens: home with generator, type page template, design studio, scan readiness panel, download ad modal (all states), ad slot placeholders, pricing, login and signup, dashboard (list, detail, analytics), fallback page, learn article template, 404 and error pages
@@ -252,4 +252,7 @@ Done: commit `phase-5-monetization-complete`.
 (none yet)
 
 ## Blockers and Questions for the Owner
-(none yet)
+1. Border contrast: the `--border` and `--ad-border` values in `DESIGN_SYSTEM.md` fail the rule stated in the same doc (UI borders 3:1). Measured: light `#CBD5E1` on white 1.48:1, dark `#334155` on `#0B1220` 1.81:1, light ad-border 2.34:1, dark ad-border 2.36:1. Replacement candidates that pass: light border `#64748B` (4.76:1), dark border `#64748B` (3.93:1), dark ad-border `#64748B` (3.75:1), light ad-border `#64748B` (4.46:1 on `#F1F5F9`). Approve before P0-3 components start using borders.
+2. `package.json` has no `typecheck` and `test` scripts. May "typecheck": "tsc --noEmit" be added now? "test" is needed in Phase 1 (P1-8) and its runner will be chosen then.
+3. Phase 0 gate item: Vercel project is not linked to the repo yet.
+4. Brand name not confirmed. UI uses "Signet" as a marked working placeholder.
