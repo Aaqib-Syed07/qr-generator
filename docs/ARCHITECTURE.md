@@ -57,7 +57,7 @@ If the repo already has a structure, follow it. Otherwise:
   /ads               AdProvider, providers, useDownloadGate, AdSlot helpers
   /billing           entitlements, Razorpay client, webhook handlers
   /redirect          status logic (pure), cache access
-  /supabase          clients (browser, server, service role server only)
+  /supabase          clients (browser, server, secret key server only)
   facts.ts           single source of truth for name, prices, limits (Phase 4)
 /services            external API wrappers (Safe Browsing, email)
 /types               shared TypeScript types
@@ -88,7 +88,7 @@ If the repo already has a structure, follow it. Otherwise:
 Use 302, not 301, so edits take effect (browsers cache 301). Never show an unbranded error page.
 
 ## Database and Storage
-Postgres on Supabase is the source of truth. Row level security on every table. Users read and write only their own rows. Service role key is server only.
+Postgres on Supabase is the source of truth. Row level security on every table. Users read and write only their own rows. The secret key is server only. RLS policies target the `anon` and `authenticated` Postgres roles; RLS never applies to requests made with the secret key.
 | Table | Main columns |
 |---|---|
 | `profiles` | id, email, plan, plan_status, plan_lapsed_at, created_at |

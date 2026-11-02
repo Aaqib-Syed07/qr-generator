@@ -153,7 +153,7 @@ Acceptance: SVG downloaded in under 30 seconds with no account. Decode suite 100
 Done: commit `phase-1-frontend-complete`, preview deploy on Vercel.
 
 ### Phase 2: Backend (accounts, dynamic codes, redirects, safety)
-Gate: Supabase URL and anon key (region ap-south-1), redirect cache set up, Safe Browsing key, Google OAuth client ID, Sentry DSN. Never invent any.
+Gate: Supabase URL and publishable key (region ap-south-1), redirect cache set up, Safe Browsing key, Google OAuth client ID, Sentry DSN. Never invent any.
 - [ ] P2-1 Schema, migrations, RLS policies and RLS tests (see `ARCHITECTURE.md`)
 - [ ] P2-2 Auth: email and Google. Protect dashboard routes
 - [ ] P2-3 Dynamic code flows: create, edit, pause, delete, convert to static. Free limit 3 until Phase 5 entitlements replace it
@@ -215,7 +215,7 @@ Done: commit `phase-5-monetization-complete`.
 | Needed in | Item | Provide | Secret? |
 |---|---|---|---|
 | Phase 0 | Brand name | Final name | No |
-| Phase 2 | Supabase | URL and anon key. Service role key only in Vercel env vars | Service role: YES |
+| Phase 2 | Supabase | URL and publishable key. Secret key only in Vercel env vars | Secret key: YES |
 | Phase 2 | Redirect cache | Upstash or Vercel KV URL and token | YES |
 | Phase 2 | Safe Browsing | API key | YES |
 | Phase 2 | Google OAuth | Client ID (no), client secret (YES) | Secret: YES |
