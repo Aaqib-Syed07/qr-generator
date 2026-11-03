@@ -120,7 +120,7 @@ Payment processing for QR users (UPI QR only encodes a link, it never touches mo
 
 ## Build Phases
 The agent works on ONE phase at a time and ticks tasks here after the checks pass. The owner moves to the next phase.
-Current phase: **Phase 0** (edit this line to move on)
+Current phase: **Phase 1** (edit this line to move on)
 
 ### Phase 0: UI
 Goal: a clear, fast, trustworthy interface and design system BEFORE any logic. Mock data only.
@@ -138,15 +138,17 @@ Done: commit `phase-0-ui-complete`.
 
 ### Phase 1: Frontend (free generator, no accounts)
 Goal: the free generator works fully in the browser. Covers FR-1 to FR-5.
-- [ ] P1-1 `QrEngine` wrapper: `render(config)`, `toPng`, `toPdf`. Pick a styled QR library after checking its docs and license, report the choice
-- [ ] P1-2 Type registry: form fields, validation and payload encoder for the 13 types
-- [ ] P1-3 Design studio and a single serializable `QrConfig` object
-- [ ] P1-4 Scan readiness checker as pure functions with unit tests. Thresholds live in one constants file and are labeled adjustable guidance
-- [ ] P1-5 Exports: PNG up to 4000 px, SVG, PDF at correct physical size
-- [ ] P1-6 `beforeDownload(format): Promise<boolean>` hook. Every download calls it. For now it returns true
-- [ ] P1-7 Local history (last 10, clear button, do not store Wi-Fi passwords by default)
-- [ ] P1-8 Decode test suite with at least two decoder libraries, build fails on any miss
-- [ ] P1-9 UPI A5 print template with shop name
+- [x] P1-1 `QrEngine` wrapper: `render(config)`, `toPng`, `toPdf`. Pick a styled QR library after checking its docs and license, report the choice
+  Report: `qr-code-styling` 1.9.2 (MIT, Denys Kozak) — natively covers every FR-3 styling need (dot styles, corner styles, gradients, logo, background; SVG and PNG export). The official `qr-border-plugin` was rejected: its license is a licence-verification plug-in with no clear grant, so frame drawing is done in-house (`lib/qr/frame.ts`, MIT). `uqr` (MIT) supplies the reference matrix size so quiet-zone modules convert to exact pixels; the decode suite cross-checks both engines agree.
+- [x] P1-2 Type registry: form fields, validation and payload encoder for the 13 types
+- [x] P1-3 Design studio and a single serializable `QrConfig` object
+- [x] P1-4 Scan readiness checker as pure functions with unit tests. Thresholds live in one constants file and are labeled adjustable guidance
+- [x] P1-5 Exports: PNG up to 4000 px, SVG, PDF at correct physical size
+- [x] P1-6 `beforeDownload(format): Promise<boolean>` hook. Every download calls it. For now it returns true
+- [x] P1-7 Local history (last 10, clear button, do not store Wi-Fi passwords by default)
+- [x] P1-8 Decode test suite with at least two decoder libraries, build fails on any miss
+  jsQR (Apache-2.0, raw RGBA) and zxing-wasm (MIT, PNG bytes) decode every payload format and every shipped style family; the `npm test` run gates before `next build`, so a decode miss fails the build.
+- [x] P1-9 UPI A5 print template with shop name
 - [ ] P1-10 Performance pass with real Lighthouse numbers
 Payload formats to verify with the decode tests (do not trust blindly): `mailto:`, `tel:`, `SMSTO:number:message`, `WIFI:T:WPA;S:ssid;P:password;H:false;;` (escape `\ ; , : "`), vCard 3.0, `geo:lat,lng`, iCalendar VEVENT, `upi://pay?pa=...&pn=...&am=...&cu=INR`. Google review links need the business Place ID or URL from the user: never invent a format.
 Acceptance: SVG downloaded in under 30 seconds with no account. Decode suite 100 percent. Checker tests flag low contrast, inverted colors, oversized logo, missing quiet zone. Every download goes through `beforeDownload`. LCP under 2 s on throttled mobile.

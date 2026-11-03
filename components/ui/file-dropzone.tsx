@@ -16,6 +16,12 @@ export type FileDropzoneProps = {
   accept: string;
   helper?: string;
   maxBytes?: number;
+  /**
+   * Receives the validated file. Phase 1 reads it in the browser only:
+   * the logo becomes a data URL inside QrConfig and never leaves the
+   * device. Omit it for storage-only use.
+   */
+  onFile?: (file: File) => void;
 };
 
 export function FileDropzone({
@@ -24,6 +30,7 @@ export function FileDropzone({
   accept,
   helper,
   maxBytes = 500_000,
+  onFile,
 }: FileDropzoneProps) {
   const [dragOver, setDragOver] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
@@ -48,6 +55,7 @@ export function FileDropzone({
     }
     setError(null);
     setFileName(file.name);
+    onFile?.(file);
   }
 
   function onDrop(event: DragEvent<HTMLDivElement>) {

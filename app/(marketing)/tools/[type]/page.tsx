@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { AdSlot } from "@/components/layout/ad-slot";
-import { GeneratorDemo } from "@/components/tools/generator-demo";
+import { Generator } from "@/components/qr/generator";
 import { qrTypeBySlug, qrTypes } from "@/lib/qr/types";
 
 type Params = { type: string };
@@ -23,9 +23,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
 
 /*
   One page per QR type, from the type registry, per docs/PRD.md P3-6.
-  Phase 0: the mock generator shell; real forms and encoders come in P1-2.
-  There is one ad slot below the fold, clear of the generator controls,
-  per the locked placement rules.
+  The generator is fully working in the browser: form fields from the
+  type registry, payload encoders, design studio, readiness checks and
+  PNG, SVG and PDF exports, all through beforeDownload.
 */
 
 export default async function ToolPage({
@@ -58,7 +58,7 @@ export default async function ToolPage({
         </p>
       </header>
 
-      <GeneratorDemo type={type} />
+      <Generator type={type} />
 
       <div className="mt-12 max-w-xl">
         <AdSlot placement="below-fold" />

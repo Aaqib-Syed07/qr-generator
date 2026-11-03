@@ -1,5 +1,5 @@
 import { AdSlot } from "@/components/layout/ad-slot";
-import { GeneratorDemo } from "@/components/tools/generator-demo";
+import { Generator } from "@/components/qr/generator";
 import { qrTypeBySlug, qrTypes } from "@/lib/qr/types";
 import Link from "next/link";
 
@@ -27,7 +27,7 @@ export default function HomePage() {
         </p>
       </header>
 
-      <GeneratorDemo type={qrTypeBySlug("url")} />
+      <Generator type={qrTypeBySlug("url")!} allowTypeSwitch />
 
       <section aria-labelledby="other-types" className="mt-12">
         <h2 id="other-types" className="text-h2 font-semibold">
